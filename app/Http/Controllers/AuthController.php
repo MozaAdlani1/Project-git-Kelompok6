@@ -21,6 +21,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        // MENCARI BERDASARKAN nama_lengkap SESUAI DB KAMU
         $user = User::where('nama_lengkap', $request->username)->first();
 
         if (!$user) {
@@ -31,12 +32,12 @@ class AuthController extends Controller
 
         $loginBerhasil = false;
 
-        // User lama (admin)
+        // Cek jika password disimpan sebagai teks biasa (seperti 12345)
         if ($user->password === $request->password) {
             $loginBerhasil = true;
         }
 
-        // User baru (dokter/apoteker)
+        // Cek jika password menggunakan Hash (seperti data dokter)
         if (
             !$loginBerhasil &&
             str_starts_with($user->password, '$2y$')
@@ -54,7 +55,6 @@ class AuthController extends Controller
         }
 
         Auth::login($user);
-
         $request->session()->regenerate();
 
         return $this->redirectByRole($user->role);
@@ -63,27 +63,20 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/login');
     }
 
     private function redirectByRole($role)
     {
         switch ($role) {
-
             case 'admin':
                 return redirect('/admin/dashboard');
-
             case 'dokter':
                 return redirect('/dokter/dashboard');
-
             case 'apoteker':
                 return redirect('/apoteker');
-
             default:
                 Auth::logout();
                 return redirect('/login');
