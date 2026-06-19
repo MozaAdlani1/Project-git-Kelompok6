@@ -23,7 +23,7 @@
             </div>
             
            <div class="w-full h-48 overflow-hidden rounded-xl border border-white/10 mt-6 shadow-lg">
-                <img src="{{ asset('images/WhatsApp-Image-2024-07-26-at-15.14.25-1.jpeg') }}" 
+                <img src="{{ asset('image/WhatsApp-Image-2024-07-26-at-15.14.25-1.jpeg') }}" 
                     alt="Gedung UIN STS Jambi" 
                      class="w-full h-full object-cover brightness-105 contrast-110 saturate-125">
             </div>
