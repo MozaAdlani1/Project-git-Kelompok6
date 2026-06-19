@@ -12,17 +12,20 @@
         
         <div class="md:w-1/2 bg-gradient-to-br from-blue-900 to-indigo-950 p-8 text-white flex flex-col justify-between items-center text-center">
             <div class="flex flex-col items-center gap-3 my-auto">
-                <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center border border-white/20 mb-2">
-                    <span class="text-xs text-white/60">[ Tempat Logo ]</span>
-                </div>
+                <!-- Bagian Logo -->
+            <div class="flex items-center justify-center mb-4">
+                     <img src="{{ asset('image/OIP.jpeg') }}" alt="Logo UIN" class="w-20 h-20 object-contain">
+            </div>
                 <h1 class="text-2xl font-bold tracking-wide uppercase">Klinik Kampus<br>UIN STS Jambi</h1>
                 <p class="text-sm text-indigo-200 max-w-xs mt-2">
                     Sistem Informasi Klinik Kampus Terintegrasi Edisi 2026
                 </p>
             </div>
             
-            <div class="w-full h-40 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center overflow-hidden mt-6">
-                <span class="text-xs text-white/40">[ Foto Klinik/Gedung ]</span>
+           <div class="w-full h-48 overflow-hidden rounded-xl border border-white/10 mt-6 shadow-lg">
+                <img src="{{ asset('images/WhatsApp-Image-2024-07-26-at-15.14.25-1.jpeg') }}" 
+                    alt="Gedung UIN STS Jambi" 
+                     class="w-full h-full object-cover brightness-105 contrast-110 saturate-125">
             </div>
         </div>
 
