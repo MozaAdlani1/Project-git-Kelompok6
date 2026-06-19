@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\App;
 use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
@@ -12,15 +13,20 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Mengecek apakah tabel users sudah ada
+        // KITA TAMBAHKAN CHECKING INI:
+        // Jika aplikasi sedang berjalan di CLI (seperti saat proses install/deploy),
+        // maka kodingan ini TIDAK AKAN DIJALANKAN.
+        if (App::runningInConsole()) {
+            return;
+        }
+
         if (Schema::hasTable('users')) {
-            // Mengecek berdasarkan nama_lengkap (identitas login kamu)
             if (!User::where('nama_lengkap', 'syarropal')->exists()) {
                 User::create([
                     'nama_lengkap' => 'syarropal',
                     'username' => 'syarropal@gmail.com',
                     'role' => 'admin',
-                    'password' => '12345', // Plain text agar terbaca oleh AuthController
+                    'password' => '12345',
                 ]);
             }
         }
